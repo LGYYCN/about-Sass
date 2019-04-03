@@ -1,0 +1,450 @@
+@charset "UTF-8";
+body { margin: 0; }
+
+/** 0-0 关于变量
+* 使用场景
+* 当一个 值(数值/字符串/列表等) 会被用到至少两次, 且后续更新维护时会有修改需求
+*/
+#box-0-0 { display: none; border: 1px solid #333; }
+
+#box-0-0 p { color: #333; font-size: 12px; }
+
+#box-0-0 a { font-size: 24px; border: 1px solid #333; }
+
+/** 0-1 运算
+* 数学运算 / 颜色计算 / 连字符 / 插值
+* + - * /
+* + 可以运算, 也可以是连字符, / 运算时, 需要 () 包住
+*/
+#box-0-1 { display: none; }
+#box-0-1 .box .demo { font: 10px/8px; width: 500px; width: 1; height: 250px; margin-left: 9px; }
+#box-0-1 .box .left, #box-0-1 .box .right { width: calc(50% - 2px); width: calc(50%-2rem); /** css3 运算函数, 可以将 % 转成 px 后再运算 */ height: 100px; float: left; border: 1px solid #333; }
+#box-0-1 .box .left { background-color: #549bb8; }
+#box-0-1 .box .right { background-color: yellowgreen; }
+
+/** 1 关于嵌套
+/** 1-0 层级嵌套
+* 不建议嵌套过深, 因为编译后的选择器过长会影响样式的权重, 也会影响浏览器效能
+* 类比于js的事件冒泡, 浏览器在处理css选择器时会从右向左一步步解析
+*/
+#box-1-0 { display: none; background-color: yellowgreen; }
+#box-1-0 p { color: #333; font-size: 12px; }
+#box-1-0 p a { color: #fff; text-decoration: none; }
+
+/** 1-1 选择器
+* 后代 (' ')空格 换行 / 子代 ( > ) / 后一个兄弟 ( + ) / 所有兄弟 ( ~ )
+*/
+#box-1-1 { display: none; }
+#box-1-1 p a { font-size: 12px; background-color: skyblue; }
+#box-1-1 p > a { font-size: 16px; }
+#box-1-1 p ~ a { font-size: 24px; background-color: #ccc; }
+#box-1-1 p + a { font-size: 20px; background-color: pink; }
+
+/** 1-2 父选择器
+* &
+*/
+#box-1-2 { display: none; }
+#box-1-2 .main a { color: #333; }
+#box-1-2 .main a:hover { color: #fff; background-color: #333; }
+#box-1-2 .main-content { background-color: skyblue; }
+
+/** 1-3 属性嵌套 */
+#box-1-3 { display: none; }
+#box-1-3 p { font-family: '宋体'; font-size: 20px; font-weight: 800; }
+#box-1-3 a { padding: 0 10px; border: 1px solid #333; border-top: 0; border-bottom: 0; }
+
+/** 2 文件混入 @import 'url'
+* 在文件编译过程中会将相关的文件直接写入文档引入位置, 且不一定要将引入语句写在顶部
+* 区别于 css 自带的 @import, 在浏览器加载时会发起请求, 且必须写在最顶部
+*
+* 适用于模块化开发, 将每个模块的样式文件单独开发, 最后一起引入,
+* 在最终项目仅需要在 html 中引入一个编译后的 css 样式表即可
+*/
+#box-2 { display: none; }
+#box-2 a { text-decoration: none; border: 1px solid #333; }
+
+/** 3 混合 @mixin(){}
+/** 3-0 一般混合
+*/
+#box-3-0 { display: none; }
+#box-3-0 button { color: #fff; background-color: #d44; font-weight: 800; font-size: 16px; }
+
+/** 3-1 带参混合 */
+#box-3-1 { display: none; }
+#box-3-1 p { color: #333; background-color: skyblue; font-weight: 800; font-size: 24px; }
+#box-3-1 button { color: #fff; background-color: #d44; font-weight: 800; font-size: 18px; }
+
+/** 3-2 带 默认值 传值 */
+#box-3-2 { display: none; }
+#box-3-2 p { color: #fff; background-color: #d44; font-weight: 800; font-size: 18px; }
+#box-3-2 button { color: #333; background-color: skyblue; font-weight: 800; font-size: 24px; }
+
+/** 3-3 插值 */
+#box-3-3 { display: none; }
+#box-3-3 p { -webkit-box-shadow: 0 0 10px 10px skyblue; -safari-box-shadow: 0 0 10px 10px skyblue; -ie-box-shadow: 0 0 10px 10px skyblue; -o-box-shadow: 0 0 10px 10px skyblue; box-shadow: 0 0 10px 10px skyblue; }
+#box-3-3 button { -webkit-box-shadow: 0 0 10px 10px #d44; -safari-box-shadow: 0 0 10px 10px #d44; -ie-box-shadow: 0 0 10px 10px #d44; -o-box-shadow: 0 0 10px 10px #d44; box-shadow: 0 0 10px 10px #d44; }
+
+/** 3-4 一般复杂用法 */
+#box-3-4 { display: none; }
+#box-3-4 .demo1 { background-color: #64c0e5; width: 30px; height: 30px; }
+#box-3-4 .demo2 { background-color: #41b1df; width: 60px; height: 60px; }
+#box-3-4 .demo3 { background-color: #23a1d4; width: 90px; height: 90px; }
+#box-3-4 .demo4 { background-color: #1e86b1; width: 120px; height: 120px; }
+#box-3-4 .demo5 { background-color: #186c8e; width: 150px; height: 150px; }
+#box-3-4 .demo6 { background-color: #12516b; width: 180px; height: 180px; }
+
+/** 4 继承 @extend
+/** 4-0 类继承 .class
+* 相比于 混合(不会将混合的样式类进行合并), 会将类进行合并输出
+*/
+#box-4-0 { display: none; }
+#box-4-0 .danger, #box-4-0 .btn1, #box-4-0 .demo1 { background-color: #f33; color: #fff; font-weight: 800; font-size: 16px; }
+#box-4-0 .danger a, #box-4-0 .btn1 a, #box-4-0 .demo1 a { margin-left: 20px; text-decoration: none; }
+#box-4-0 .danger:hover, #box-4-0 .btn1:hover, #box-4-0 .demo1:hover { background-color: skyblue; color: #333; }
+
+/** 4-1 占位符继承 %placeholder */
+#box-4-1 { display: none; }
+#box-4-1 .btn1, #box-4-1 .demo1 { background-color: #f33; color: #fff; font-weight: 800; font-size: 16px; }
+#box-4-1 .btn1 a, #box-4-1 .demo1 a { margin-left: 20px; text-decoration: none; }
+#box-4-1 .btn1:hover, #box-4-1 .demo1:hover { background-color: skyblue; color: #333; }
+
+/** 5 函数 */
+/** 5-0 数字函数
+* percentage($value)：将不带单位的数转换成百分比值；
+* round($value)：将数值四舍五入，转换成一个最接近的整数；
+* ceil($value)：向上取整；
+* floor($value)：向下取整；
+* abs($value)：取数的绝对值；
+* min($numbers…)：找出几个数值之间的最小值；
+* max($numbers…)：找出几个数值之间的最大值；
+* random(): 获取随机数
+*/
+#box-5-0 { display: none; margin-right: 0 auto; width: 800px; height: 100px; background-color: #eee; }
+#box-5-0 .demo { background-color: yellowgreen; }
+#box-5-0 .demo1 { width: 20%; height: 300%; margin: 5%; }
+#box-5-0 .demo2 { width: 123px; height: 60px; margin: 12%; }
+#box-5-0 .demo3 { width: 124px; height: 43px; margin: 13%; }
+#box-5-0 .demo4 { width: 123px; height: 42px; margin: 12%; }
+#box-5-0 .demo5 { width: 123.4px; height: min(15%, 30, 300%); margin: max(10px, 50px); padding: 0.9082509951; }
+
+/** 5-1 RGB颜色函数
+* rgb($r, $g, $b) / rgba($r, $g, $b, $a)
+* red($color) / green($color) / blue($color)
+* mix($color1, $color2, $percent)
+*/
+#box-5-1 { display: none; }
+#box-5-1 .demo { float: left; width: 100px; height: 100px; margin: 10px; text-align: center; line-height: 100px; }
+#box-5-1 .demo1 { background-color: yellowgreen; }
+#box-5-1 .demo2 { background-color: rgba(154, 205, 50, 0.65); }
+#box-5-1 .demo3 { background-color: #cd893b; }
+#box-5-1 .demo4 { background-color: #e66640; }
+#box-5-1 .demo5 { background-color: #cd893b; }
+#box-5-1 .demo6 { background-color: #b3ab37; }
+
+/** 5-2 HSL颜色函数
+* hsl() / hsla()
+* hue() / saturation() / $lightness()
+* adjust-hue($color,$degrees)：通过改变一个颜色的色相值；
+* lighten($color,$amount)：通过改变颜色的亮度值，让颜色变亮；
+* darken($color,$amount)：通过改变颜色的亮度值，让颜色变暗；
+* saturate($color,$amount)：通过改变颜色的饱和度值，让颜色更饱和;
+* desaturate($color,$amount)：通过改变颜色的饱和度值，让颜色更少的饱和;
+* grayscale($color)：将一个颜色变成灰色，相当于desaturate($color,100%);
+* complement($color)：返回一个补充色，相当于adjust-hue($color,180deg);
+* invert($color)：反回一个反相色，红、绿、蓝色值倒过来，而透明度不变。
+*/
+#box-5-2 { display: none; margin: 0 auto; width: 1050px; }
+#box-5-2 .demo li { width: 4.7619047619%; float: left; height: 60px; list-style: none outside none; }
+#box-5-2 ul.demo1 li:nth-child(10) { background-color: #ff1a1a; }
+#box-5-2 ul.demo1 li:nth-child(10):hover:before { content: "#ff1a1a"; color: #4d0000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(9) { background-color: #ff3333; }
+#box-5-2 ul.demo1 li:nth-child(9):hover:before { content: "#ff3333"; color: #660000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(8) { background-color: #ff4d4d; }
+#box-5-2 ul.demo1 li:nth-child(8):hover:before { content: "#ff4d4d"; color: maroon; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(7) { background-color: #ff6666; }
+#box-5-2 ul.demo1 li:nth-child(7):hover:before { content: "#ff6666"; color: #990000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(6) { background-color: #ff8080; }
+#box-5-2 ul.demo1 li:nth-child(6):hover:before { content: "#ff8080"; color: #b30000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(5) { background-color: #ff9999; }
+#box-5-2 ul.demo1 li:nth-child(5):hover:before { content: "#ff9999"; color: #cc0000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(4) { background-color: #ffb3b3; }
+#box-5-2 ul.demo1 li:nth-child(4):hover:before { content: "#ffb3b3"; color: #e60000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(3) { background-color: #ffcccc; }
+#box-5-2 ul.demo1 li:nth-child(3):hover:before { content: "#ffcccc"; color: red; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(2) { background-color: #ffe6e6; }
+#box-5-2 ul.demo1 li:nth-child(2):hover:before { content: "#ffe6e6"; color: #ff1a1a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(1) { background-color: white; }
+#box-5-2 ul.demo1 li:nth-child(1):hover:before { content: "white"; color: #ff3333; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(12) { background-color: #e60000; }
+#box-5-2 ul.demo1 li:nth-child(12):hover:before { content: "#e60000"; color: #ffb3b3; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(13) { background-color: #cc0000; }
+#box-5-2 ul.demo1 li:nth-child(13):hover:before { content: "#cc0000"; color: #ff9999; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(14) { background-color: #b30000; }
+#box-5-2 ul.demo1 li:nth-child(14):hover:before { content: "#b30000"; color: #ff8080; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(15) { background-color: #990000; }
+#box-5-2 ul.demo1 li:nth-child(15):hover:before { content: "#990000"; color: #ff6666; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(16) { background-color: maroon; }
+#box-5-2 ul.demo1 li:nth-child(16):hover:before { content: "maroon"; color: #ff4d4d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(17) { background-color: #660000; }
+#box-5-2 ul.demo1 li:nth-child(17):hover:before { content: "#660000"; color: #ff3333; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(18) { background-color: #4d0000; }
+#box-5-2 ul.demo1 li:nth-child(18):hover:before { content: "#4d0000"; color: #ff1a1a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(19) { background-color: #330000; }
+#box-5-2 ul.demo1 li:nth-child(19):hover:before { content: "#330000"; color: red; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(20) { background-color: #1a0000; }
+#box-5-2 ul.demo1 li:nth-child(20):hover:before { content: "#1a0000"; color: #e60000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(21) { background-color: black; }
+#box-5-2 ul.demo1 li:nth-child(21):hover:before { content: "black"; color: #cc0000; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo1 li:nth-child(11) { background-color: #f00; }
+#box-5-2 ul.demo2 li:nth-child(10) { background-color: #ffb833; }
+#box-5-2 ul.demo2 li:nth-child(10):hover:before { content: "#ffb833"; color: #664200; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(9) { background-color: #ffc14d; }
+#box-5-2 ul.demo2 li:nth-child(9):hover:before { content: "#ffc14d"; color: #805300; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(8) { background-color: #ffc966; }
+#box-5-2 ul.demo2 li:nth-child(8):hover:before { content: "#ffc966"; color: #996300; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(7) { background-color: #ffd280; }
+#box-5-2 ul.demo2 li:nth-child(7):hover:before { content: "#ffd280"; color: #b37400; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(6) { background-color: #ffdb99; }
+#box-5-2 ul.demo2 li:nth-child(6):hover:before { content: "#ffdb99"; color: #cc8500; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(5) { background-color: #ffe4b3; }
+#box-5-2 ul.demo2 li:nth-child(5):hover:before { content: "#ffe4b3"; color: #e69500; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(4) { background-color: #ffedcc; }
+#box-5-2 ul.demo2 li:nth-child(4):hover:before { content: "#ffedcc"; color: #ffa600; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(3) { background-color: #fff6e6; }
+#box-5-2 ul.demo2 li:nth-child(3):hover:before { content: "#fff6e6"; color: #ffaf1a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(2) { background-color: white; }
+#box-5-2 ul.demo2 li:nth-child(2):hover:before { content: "white"; color: #ffb833; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(1) { background-color: white; }
+#box-5-2 ul.demo2 li:nth-child(1):hover:before { content: "white"; color: #ffb833; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(12) { background-color: #ffa600; }
+#box-5-2 ul.demo2 li:nth-child(12):hover:before { content: "#ffa600"; color: #ffedcc; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(13) { background-color: #e69500; }
+#box-5-2 ul.demo2 li:nth-child(13):hover:before { content: "#e69500"; color: #ffe4b3; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(14) { background-color: #cc8500; }
+#box-5-2 ul.demo2 li:nth-child(14):hover:before { content: "#cc8500"; color: #ffdb99; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(15) { background-color: #b37400; }
+#box-5-2 ul.demo2 li:nth-child(15):hover:before { content: "#b37400"; color: #ffd280; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(16) { background-color: #996300; }
+#box-5-2 ul.demo2 li:nth-child(16):hover:before { content: "#996300"; color: #ffc966; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(17) { background-color: #805300; }
+#box-5-2 ul.demo2 li:nth-child(17):hover:before { content: "#805300"; color: #ffc14d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(18) { background-color: #664200; }
+#box-5-2 ul.demo2 li:nth-child(18):hover:before { content: "#664200"; color: #ffb833; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(19) { background-color: #4d3200; }
+#box-5-2 ul.demo2 li:nth-child(19):hover:before { content: "#4d3200"; color: #ffaf1a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(20) { background-color: #332100; }
+#box-5-2 ul.demo2 li:nth-child(20):hover:before { content: "#332100"; color: #ffa600; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(21) { background-color: #1a1100; }
+#box-5-2 ul.demo2 li:nth-child(21):hover:before { content: "#1a1100"; color: #e69500; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo2 li:nth-child(11) { background-color: #ffaf1a; }
+#box-5-2 ul.demo3 li:nth-child(10) { background-color: #f2ff38; }
+#box-5-2 ul.demo3 li:nth-child(10):hover:before { content: "#f2ff38"; color: #646b00; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(9) { background-color: #f3ff52; }
+#box-5-2 ul.demo3 li:nth-child(9):hover:before { content: "#f3ff52"; color: #7c8500; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(8) { background-color: #f5ff6b; }
+#box-5-2 ul.demo3 li:nth-child(8):hover:before { content: "#f5ff6b"; color: #949e00; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(7) { background-color: #f7ff85; }
+#box-5-2 ul.demo3 li:nth-child(7):hover:before { content: "#f7ff85"; color: #abb800; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(6) { background-color: #f9ff9e; }
+#box-5-2 ul.demo3 li:nth-child(6):hover:before { content: "#f9ff9e"; color: #c3d100; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(5) { background-color: #faffb8; }
+#box-5-2 ul.demo3 li:nth-child(5):hover:before { content: "#faffb8"; color: #dbeb00; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(4) { background-color: #fcffd1; }
+#box-5-2 ul.demo3 li:nth-child(4):hover:before { content: "#fcffd1"; color: #eeff05; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(3) { background-color: #feffeb; }
+#box-5-2 ul.demo3 li:nth-child(3):hover:before { content: "#feffeb"; color: #f0ff1f; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(2) { background-color: white; }
+#box-5-2 ul.demo3 li:nth-child(2):hover:before { content: "white"; color: #f1ff33; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(1) { background-color: white; }
+#box-5-2 ul.demo3 li:nth-child(1):hover:before { content: "white"; color: #f1ff33; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(12) { background-color: #eeff05; }
+#box-5-2 ul.demo3 li:nth-child(12):hover:before { content: "#eeff05"; color: #fcffd1; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(13) { background-color: #dbeb00; }
+#box-5-2 ul.demo3 li:nth-child(13):hover:before { content: "#dbeb00"; color: #faffb8; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(14) { background-color: #c3d100; }
+#box-5-2 ul.demo3 li:nth-child(14):hover:before { content: "#c3d100"; color: #f9ff9e; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(15) { background-color: #abb800; }
+#box-5-2 ul.demo3 li:nth-child(15):hover:before { content: "#abb800"; color: #f7ff85; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(16) { background-color: #949e00; }
+#box-5-2 ul.demo3 li:nth-child(16):hover:before { content: "#949e00"; color: #f5ff6b; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(17) { background-color: #7c8500; }
+#box-5-2 ul.demo3 li:nth-child(17):hover:before { content: "#7c8500"; color: #f3ff52; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(18) { background-color: #646b00; }
+#box-5-2 ul.demo3 li:nth-child(18):hover:before { content: "#646b00"; color: #f2ff38; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(19) { background-color: #4c5200; }
+#box-5-2 ul.demo3 li:nth-child(19):hover:before { content: "#4c5200"; color: #f0ff1f; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(20) { background-color: #343800; }
+#box-5-2 ul.demo3 li:nth-child(20):hover:before { content: "#343800"; color: #eeff05; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(21) { background-color: #1d1f00; }
+#box-5-2 ul.demo3 li:nth-child(21):hover:before { content: "#1d1f00"; color: #dbeb00; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo3 li:nth-child(11) { background-color: #f0ff1f; }
+#box-5-2 ul.demo4 li:nth-child(10) { background-color: #5cf21c; }
+#box-5-2 ul.demo4 li:nth-child(10):hover:before { content: "#5cf21c"; color: #153f04; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(9) { background-color: #6ef335; }
+#box-5-2 ul.demo4 li:nth-child(9):hover:before { content: "#6ef335"; color: #1e5705; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(8) { background-color: #7ff54d; }
+#box-5-2 ul.demo4 li:nth-child(8):hover:before { content: "#7ff54d"; color: #266f06; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(7) { background-color: #90f665; }
+#box-5-2 ul.demo4 li:nth-child(7):hover:before { content: "#90f665"; color: #2e8708; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(6) { background-color: #a2f77d; }
+#box-5-2 ul.demo4 li:nth-child(6):hover:before { content: "#a2f77d"; color: #369f09; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(5) { background-color: #b3f995; }
+#box-5-2 ul.demo4 li:nth-child(5):hover:before { content: "#b3f995"; color: #3eb70b; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(4) { background-color: #c4faad; }
+#box-5-2 ul.demo4 li:nth-child(4):hover:before { content: "#c4faad"; color: #47cf0c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(3) { background-color: #d6fcc5; }
+#box-5-2 ul.demo4 li:nth-child(3):hover:before { content: "#d6fcc5"; color: #4fe70d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(2) { background-color: #e7fddd; }
+#box-5-2 ul.demo4 li:nth-child(2):hover:before { content: "#e7fddd"; color: #5cf21c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(1) { background-color: #f8fef5; }
+#box-5-2 ul.demo4 li:nth-child(1):hover:before { content: "#f8fef5"; color: #6ef335; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(12) { background-color: #47cf0c; }
+#box-5-2 ul.demo4 li:nth-child(12):hover:before { content: "#47cf0c"; color: #c4faad; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(13) { background-color: #3eb70b; }
+#box-5-2 ul.demo4 li:nth-child(13):hover:before { content: "#3eb70b"; color: #b3f995; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(14) { background-color: #369f09; }
+#box-5-2 ul.demo4 li:nth-child(14):hover:before { content: "#369f09"; color: #a2f77d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(15) { background-color: #2e8708; }
+#box-5-2 ul.demo4 li:nth-child(15):hover:before { content: "#2e8708"; color: #90f665; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(16) { background-color: #266f06; }
+#box-5-2 ul.demo4 li:nth-child(16):hover:before { content: "#266f06"; color: #7ff54d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(17) { background-color: #1e5705; }
+#box-5-2 ul.demo4 li:nth-child(17):hover:before { content: "#1e5705"; color: #6ef335; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(18) { background-color: #153f04; }
+#box-5-2 ul.demo4 li:nth-child(18):hover:before { content: "#153f04"; color: #5cf21c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(19) { background-color: #0d2702; }
+#box-5-2 ul.demo4 li:nth-child(19):hover:before { content: "#0d2702"; color: #4fe70d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(20) { background-color: #050e01; }
+#box-5-2 ul.demo4 li:nth-child(20):hover:before { content: "#050e01"; color: #47cf0c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(21) { background-color: black; }
+#box-5-2 ul.demo4 li:nth-child(21):hover:before { content: "black"; color: #42c10b; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo4 li:nth-child(11) { background-color: #4fe70d; }
+#box-5-2 ul.demo5 li:nth-child(10) { background-color: #0fabff; }
+#box-5-2 ul.demo5 li:nth-child(10):hover:before { content: "#0fabff"; color: #002b42; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(9) { background-color: #29b4ff; }
+#box-5-2 ul.demo5 li:nth-child(9):hover:before { content: "#29b4ff"; color: #003c5c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(8) { background-color: #42bdff; }
+#box-5-2 ul.demo5 li:nth-child(8):hover:before { content: "#42bdff"; color: #004c75; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(7) { background-color: #5cc6ff; }
+#box-5-2 ul.demo5 li:nth-child(7):hover:before { content: "#5cc6ff"; color: #005d8f; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(6) { background-color: #75cfff; }
+#box-5-2 ul.demo5 li:nth-child(6):hover:before { content: "#75cfff"; color: #006da8; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(5) { background-color: #8fd8ff; }
+#box-5-2 ul.demo5 li:nth-child(5):hover:before { content: "#8fd8ff"; color: #007ec2; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(4) { background-color: #a8e1ff; }
+#box-5-2 ul.demo5 li:nth-child(4):hover:before { content: "#a8e1ff"; color: #008fdb; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(3) { background-color: #c2eaff; }
+#box-5-2 ul.demo5 li:nth-child(3):hover:before { content: "#c2eaff"; color: #009ff5; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(2) { background-color: #dbf3ff; }
+#box-5-2 ul.demo5 li:nth-child(2):hover:before { content: "#dbf3ff"; color: #0fabff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(1) { background-color: #f5fbff; }
+#box-5-2 ul.demo5 li:nth-child(1):hover:before { content: "#f5fbff"; color: #29b4ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(12) { background-color: #008fdb; }
+#box-5-2 ul.demo5 li:nth-child(12):hover:before { content: "#008fdb"; color: #a8e1ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(13) { background-color: #007ec2; }
+#box-5-2 ul.demo5 li:nth-child(13):hover:before { content: "#007ec2"; color: #8fd8ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(14) { background-color: #006da8; }
+#box-5-2 ul.demo5 li:nth-child(14):hover:before { content: "#006da8"; color: #75cfff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(15) { background-color: #005d8f; }
+#box-5-2 ul.demo5 li:nth-child(15):hover:before { content: "#005d8f"; color: #5cc6ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(16) { background-color: #004c75; }
+#box-5-2 ul.demo5 li:nth-child(16):hover:before { content: "#004c75"; color: #42bdff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(17) { background-color: #003c5c; }
+#box-5-2 ul.demo5 li:nth-child(17):hover:before { content: "#003c5c"; color: #29b4ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(18) { background-color: #002b42; }
+#box-5-2 ul.demo5 li:nth-child(18):hover:before { content: "#002b42"; color: #0fabff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(19) { background-color: #001b29; }
+#box-5-2 ul.demo5 li:nth-child(19):hover:before { content: "#001b29"; color: #009ff5; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(20) { background-color: #000a0f; }
+#box-5-2 ul.demo5 li:nth-child(20):hover:before { content: "#000a0f"; color: #008fdb; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(21) { background-color: black; }
+#box-5-2 ul.demo5 li:nth-child(21):hover:before { content: "black"; color: #0085cc; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo5 li:nth-child(11) { background-color: #009ff5; }
+#box-5-2 ul.demo6 li:nth-child(10) { background-color: #ef0fff; }
+#box-5-2 ul.demo6 li:nth-child(10):hover:before { content: "#ef0fff"; color: #3e0042; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(9) { background-color: #f129ff; }
+#box-5-2 ul.demo6 li:nth-child(9):hover:before { content: "#f129ff"; color: #56005c; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(8) { background-color: #f242ff; }
+#box-5-2 ul.demo6 li:nth-child(8):hover:before { content: "#f242ff"; color: #6d0075; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(7) { background-color: #f45cff; }
+#box-5-2 ul.demo6 li:nth-child(7):hover:before { content: "#f45cff"; color: #85008f; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(6) { background-color: #f675ff; }
+#box-5-2 ul.demo6 li:nth-child(6):hover:before { content: "#f675ff"; color: #9d00a8; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(5) { background-color: #f88fff; }
+#box-5-2 ul.demo6 li:nth-child(5):hover:before { content: "#f88fff"; color: #b500c2; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(4) { background-color: #f9a8ff; }
+#box-5-2 ul.demo6 li:nth-child(4):hover:before { content: "#f9a8ff"; color: #cd00db; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(3) { background-color: #fbc2ff; }
+#box-5-2 ul.demo6 li:nth-child(3):hover:before { content: "#fbc2ff"; color: #e400f5; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(2) { background-color: #fddbff; }
+#box-5-2 ul.demo6 li:nth-child(2):hover:before { content: "#fddbff"; color: #ef0fff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(1) { background-color: #fef5ff; }
+#box-5-2 ul.demo6 li:nth-child(1):hover:before { content: "#fef5ff"; color: #f129ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(12) { background-color: #cd00db; }
+#box-5-2 ul.demo6 li:nth-child(12):hover:before { content: "#cd00db"; color: #f9a8ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(13) { background-color: #b500c2; }
+#box-5-2 ul.demo6 li:nth-child(13):hover:before { content: "#b500c2"; color: #f88fff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(14) { background-color: #9d00a8; }
+#box-5-2 ul.demo6 li:nth-child(14):hover:before { content: "#9d00a8"; color: #f675ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(15) { background-color: #85008f; }
+#box-5-2 ul.demo6 li:nth-child(15):hover:before { content: "#85008f"; color: #f45cff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(16) { background-color: #6d0075; }
+#box-5-2 ul.demo6 li:nth-child(16):hover:before { content: "#6d0075"; color: #f242ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(17) { background-color: #56005c; }
+#box-5-2 ul.demo6 li:nth-child(17):hover:before { content: "#56005c"; color: #f129ff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(18) { background-color: #3e0042; }
+#box-5-2 ul.demo6 li:nth-child(18):hover:before { content: "#3e0042"; color: #ef0fff; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(19) { background-color: #260029; }
+#box-5-2 ul.demo6 li:nth-child(19):hover:before { content: "#260029"; color: #e400f5; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(20) { background-color: #0e000f; }
+#box-5-2 ul.demo6 li:nth-child(20):hover:before { content: "#0e000f"; color: #cd00db; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(21) { background-color: black; }
+#box-5-2 ul.demo6 li:nth-child(21):hover:before { content: "black"; color: #be00cc; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo6 li:nth-child(11) { background-color: #e400f5; }
+#box-5-2 ul.demo7 li:nth-child(10) { background-color: #848484; }
+#box-5-2 ul.demo7 li:nth-child(10):hover:before { content: "#848484"; color: #1e1e1e; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(9) { background-color: #919191; }
+#box-5-2 ul.demo7 li:nth-child(9):hover:before { content: "#919191"; color: #2b2b2b; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(8) { background-color: #9d9d9d; }
+#box-5-2 ul.demo7 li:nth-child(8):hover:before { content: "#9d9d9d"; color: #373737; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(7) { background-color: #aaaaaa; }
+#box-5-2 ul.demo7 li:nth-child(7):hover:before { content: "#aaaaaa"; color: #444444; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(6) { background-color: #b7b7b7; }
+#box-5-2 ul.demo7 li:nth-child(6):hover:before { content: "#b7b7b7"; color: #515151; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(5) { background-color: #c4c4c4; }
+#box-5-2 ul.demo7 li:nth-child(5):hover:before { content: "#c4c4c4"; color: #5e5e5e; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(4) { background-color: #d0d0d0; }
+#box-5-2 ul.demo7 li:nth-child(4):hover:before { content: "#d0d0d0"; color: #6a6a6a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(3) { background-color: #dddddd; }
+#box-5-2 ul.demo7 li:nth-child(3):hover:before { content: "#dddddd"; color: #777777; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(2) { background-color: #eaeaea; }
+#box-5-2 ul.demo7 li:nth-child(2):hover:before { content: "#eaeaea"; color: #848484; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(1) { background-color: #f7f7f7; }
+#box-5-2 ul.demo7 li:nth-child(1):hover:before { content: "#f7f7f7"; color: #919191; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(12) { background-color: #6a6a6a; }
+#box-5-2 ul.demo7 li:nth-child(12):hover:before { content: "#6a6a6a"; color: #d0d0d0; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(13) { background-color: #5e5e5e; }
+#box-5-2 ul.demo7 li:nth-child(13):hover:before { content: "#5e5e5e"; color: #c4c4c4; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(14) { background-color: #515151; }
+#box-5-2 ul.demo7 li:nth-child(14):hover:before { content: "#515151"; color: #b7b7b7; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(15) { background-color: #444444; }
+#box-5-2 ul.demo7 li:nth-child(15):hover:before { content: "#444444"; color: #aaaaaa; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(16) { background-color: #373737; }
+#box-5-2 ul.demo7 li:nth-child(16):hover:before { content: "#373737"; color: #9d9d9d; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(17) { background-color: #2b2b2b; }
+#box-5-2 ul.demo7 li:nth-child(17):hover:before { content: "#2b2b2b"; color: #919191; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(18) { background-color: #1e1e1e; }
+#box-5-2 ul.demo7 li:nth-child(18):hover:before { content: "#1e1e1e"; color: #848484; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(19) { background-color: #111111; }
+#box-5-2 ul.demo7 li:nth-child(19):hover:before { content: "#111111"; color: #777777; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(20) { background-color: #040404; }
+#box-5-2 ul.demo7 li:nth-child(20):hover:before { content: "#040404"; color: #6a6a6a; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(21) { background-color: black; }
+#box-5-2 ul.demo7 li:nth-child(21):hover:before { content: "black"; color: #666666; font-family: verdana; font-size: 8px; padding: 2px; }
+#box-5-2 ul.demo7 li:nth-child(11) { background-color: #777; }
+
+/** sass官网 https://www.sass-lang.com
+/** 函数补充 https://www.w3cplus.com/preprocessor/sass-color-function.html */
+/** 函数补充 https://www.jianshu.com/p/ef2ca6fbf944 */
+
+/*# sourceMappingURL=style.compact.css.map */
